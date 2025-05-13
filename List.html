@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 1000px;
+            
+        }
+        #itemContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        #textInput {
+            margin: 10px;
+            width: 400px;
+            height: 25px;
+        }
+        #addItem {
+            margin: 10px;
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM PROJECT: LIST📝</h1>
+    <form id="form">
+
+        <div>
+            <input type="text" id="textInput" placeholder="ENTER AN ITEM!">
+        </div>
+        <button id="addItem">Add Item</button>
+        <div id="itemContainer">
+        <ul id="ul">
+            <!-- Items would be added here through JavaScript -->
+        </ul>
+    </div>
+    </form>
+    <script>
+        let textInput = document.querySelector("#textInput")
+        let itemContainer = document.querySelector("#itemContainer")
+        let ul = document.querySelector("#ul")
+        let addItem = document.querySelector("#addItem")
+        let form = document.querySelector("#form")
+
+        //cool styling
+        window.addEventListener("scroll", () => {
+            if(window.scrollY >= 75 ){
+                document.body.style.backgroundColor = "cyan"
+                document.body.style.color = "red"
+            } else {
+                  document.body.style.backgroundColor = ""
+                document.body.style.color = ""
+            }
+        })
+
+        // starting on adding stuff
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            function addText() {
+                const newItem = textInput.value.trim() 
+                // console.log(newItem) //for testing
+               
+         const li = document.createElement('li')
+  li.innerHTML = `
+         ${newItem}
+          <button class="remove-item btn-link text-red">
+            <i class="fa-solid fa-xmark"></i>
+             </button> 
+  `
+  ul.appendChild(li)
+            }
+            addText()
+        })
+        
+    </script>
+</body>
+</html>
