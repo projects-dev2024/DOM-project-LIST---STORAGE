@@ -31,6 +31,10 @@
             font-size: 20px;
             color: blue;
         }
+        .deleteBtn {
+            height:30px ;
+            width: 30px;
+        }
     </style>
 </head>
 <body>
@@ -75,14 +79,19 @@
          const li = document.createElement('li')
   li.innerHTML = `
          ${newItem}
-          <button class="remove-item btn-link text-red">
-            <i class="fa-solid fa-xmark"></i>
-             </button> 
+          <button class="deleteBtn">❌ </button> 
   `
   ul.appendChild(li)
             }
             addText()
+            let deleteBtn = document.querySelectorAll(".deleteBtn")
+            deleteBtn.forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                    e.target.parentElement.remove()
+                })
+            })
         })
+        
         
     </script>
 </body>
