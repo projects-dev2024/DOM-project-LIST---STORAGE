@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+<!-- STYLE CSS -->
+
     <style>
         body{
             display: flex;
@@ -11,7 +15,22 @@
             justify-content: flex-start;
             align-items: center;
         }
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            list-style-type: none;
+            height: 20px;
+            width: 50px;
+            border: 2px solid black;
+            margin: 10px;
+        }
     </style>
+
+
+
+<!-- DOM -->
+
 </head>
 <body>
     <H1>PRACTICE</H1>
@@ -24,44 +43,59 @@
             <!-- ITEMS GO HERE -->
         </ul>
     </div>
-
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
+    
     <!-- JAVASCRIPT -->
     <script>
         let textInput = document.querySelector("#textInput")
         let addItem = document.querySelector("#addItem")
         let itemArray = []
         let itemList = document.querySelector("#itemList")
-
         // ADDING STUFF
-
+        
         function add(){
             addItem.addEventListener("click", () => {
-
+                
                 //ADDED ITEMS TO THE LIST
                 const addedItem = textInput.value.trim()
                 const li = document.createElement("li")
                 li.innerHTML = `
-                <li>
                     ${addedItem}
-                    </li>
-                    <button id="deleteBtn">X</button>
+                    <button class="deleteBtn">X</button>
                     `
                     itemList.appendChild(li)
                     // itemArray.push(addedItem)
                     // console.log(addedItem)  //for testing
-                // console.log(itemArray)
+                    // console.log(itemArray)
+                })
+            }
+            add() // CALLS THE ADDING FUNCTION
+            
+            
+            let deleteBtn = document.querySelectorAll(".deleteBtn")
+            //DELETE BUTTON
+            
+            function deleteItem() {
+                itemList.addEventListener("click", (e) => { //// The (e) is the things inside the 
+                    if(e.target.classList.contains("deleteBtn")){ //classlist is the classese of the items
+                        e.target.parentElement.remove() //target is the thing that was clicked
+                    }
+                })
+            }
+            deleteItem()
 
-            })
-        }
-        add() // CALLS THE ADDING FUNCTION
-        
 
-    </script>
+            
+
+
+
+
+            </script>
 </body>
+
 </html>
