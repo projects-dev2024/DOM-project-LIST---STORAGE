@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <H1>PRACTICE</H1>
+    <div id="textContainer">
+        <input type="text" id="textInput">
+    </div>
+    <button id="addItem">Add</button>
+    <div id="itemContainer">
+        <ul id="itemList">
+            <!-- ITEMS GO HERE -->
+        </ul>
+    </div>
+
+
+
+
+
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        let textInput = document.querySelector("#textInput")
+        let addItem = document.querySelector("#addItem")
+        let itemArray = []
+        let itemList = document.querySelector("#itemList")
+
+        // ADDING STUFF
+
+        function add(){
+            addItem.addEventListener("click", () => {
+
+                //ADDED ITEMS TO THE LIST
+                const addedItem = textInput.value.trim()
+                const li = document.createElement("li")
+                li.innerHTML = `
+                <li>
+                    ${addedItem}
+                    </li>
+                    <button id="deleteBtn">X</button>
+                    `
+                    itemList.appendChild(li)
+                    // itemArray.push(addedItem)
+                    // console.log(addedItem)  //for testing
+                // console.log(itemArray)
+
+            })
+        }
+        add() // CALLS THE ADDING FUNCTION
+        
+
+    </script>
+</body>
+</html>

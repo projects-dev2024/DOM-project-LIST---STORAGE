@@ -35,6 +35,17 @@
             height:30px ;
             width: 30px;
         }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black; 
+        }
     </style>
 </head>
 <body>
@@ -46,17 +57,23 @@
         </div>
         <button id="addItem">Add Item</button>
         <div id="itemContainer">
-        <ul id="ul">
-            <!-- Items would be added here through JavaScript -->
-        </ul>
-    </div>
+            <ul id="ul">
+                <!-- Items would be added here through JavaScript -->
+            </ul>
+        </div>
     </form>
+    
+    <!-- clear button -->
+    <button id="clearBtn">Clear All Items</button>
+    
+    
     <script>
         let textInput = document.querySelector("#textInput")
         let itemContainer = document.querySelector("#itemContainer")
         let ul = document.querySelector("#ul")
         let addItem = document.querySelector("#addItem")
         let form = document.querySelector("#form")
+        let items = ul.querySelectorAll("li")
 
         //cool styling
         window.addEventListener("scroll", () => {
@@ -79,7 +96,7 @@
          const li = document.createElement('li')
   li.innerHTML = `
          ${newItem}
-          <button class="deleteBtn">❌ </button> 
+          <button class="deleteBtn">❌</button> 
   `
   ul.appendChild(li)
             }
@@ -91,8 +108,28 @@
                 })
             })
         })
+        //items array 
+        let itemArray = []
+
+
+
+        // clear all items
+        let clearBtn = document.querySelector("#clearBtn")
+        clearBtn.addEventListener("click", () => {
+            ul.innerHTML = ""
+            itemArray = []
+        })
+
+
+        //Session storage 
+        //naming what is stored in the session storage
+        sessionStorage.setItem("storeItem" // the name of what is stored)
+        , ul.innerHTML) // what is stored)
+        const storeItem = sessionStorage.getItem("storeItem") //gets the data
+        console.log(storeItem)
+        console.log(itemArray)
         
-        
+    
     </script>
 </body>
 </html>
