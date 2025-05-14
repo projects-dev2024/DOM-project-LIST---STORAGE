@@ -43,6 +43,8 @@
             <!-- ITEMS GO HERE -->
         </ul>
     </div>
+
+    <button id="clear">Clear All</button>
     
     
     
@@ -89,6 +91,18 @@
             }
             deleteItem()
 
+            
+
+            // Clear all button
+
+            let clear = document.querySelector("#clear")
+            function clearItems() {
+                clear.addEventListener("click", () => {
+                    itemList.innerHTML = ""
+                    itemArray = []
+                })
+            }
+            clearItems()
 
             
 
