@@ -68,16 +68,16 @@
     
     
     <script>
-        let textInput = document.querySelector("#textInput")
-        let itemContainer = document.querySelector("#itemContainer")
-        let ul = document.querySelector("#ul")
-        let addItem = document.querySelector("#addItem")
-        let form = document.querySelector("#form")
-        let items = ul.querySelectorAll("li")
+        const textInput = document.querySelector("#textInput")
+        const itemContainer = document.querySelector("#itemContainer")
+        const ul = document.querySelector("#ul")
+        const addItem = document.querySelector("#addItem")
+        const form = document.querySelector("#form")
+        const items = ul.querySelectorAll("li")
 
         //cool styling
         window.addEventListener("scroll", () => {
-            if(window.scrollY >= 75 ){
+            if(window.scrollY >= 50 ){
                 document.body.style.backgroundColor = "cyan"
                 document.body.style.color = "red"
             } else {
@@ -129,7 +129,7 @@
         console.log(storeItem)
         console.log(itemArray)
         
-    
+       
     </script>
 </body>
 </html>

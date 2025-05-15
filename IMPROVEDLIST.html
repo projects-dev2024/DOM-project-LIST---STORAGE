@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPROVED HTML</title>
+
+
+<!-- STYLE CSS -->
+
+    <style>
+        h1 {
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 50px;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 1000px;
+        }
+        #textInput {
+            height: 50px;
+            width: 300px;
+            border: 3px red solid;
+            border-radius: 10px;
+            font-size: 20px;
+            color: brown;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            list-style-type: none;
+            height: 20px;
+            width: 50px;
+            border: 2px solid black;
+            margin: 10px;
+        }
+        #textContainer {
+            padding: 10px;
+            /* margin: 20px; */
+        }
+        #addItem {
+            height: 50px;
+            width: 100px;
+            color: red;
+            border: 3px red solid;
+            font-size: 30px;
+            border-radius: 20px;
+        }
+        #addItem:hover {
+            height: 60px;
+            width: 110px;
+            color: gold;
+            border: 2px gold solid;
+            font-size: 40px;
+            border-radius: 10px;
+        }
+        #clear {
+            height: 50px;
+            width: 150px;
+            color: blue;
+            border: 5px blue solid;
+            font-size: 30px;
+            border-radius: 20px;
+        }
+        #clear:hover {
+            height: 110px;
+            width: 170px;
+            color: green;
+            border: 3px green solid;
+            font-size: 45px;
+            border-radius: 50px ;
+        }
+    </style>
+
+
+
+<!-- DOM -->
+
+</head>
+<body>
+    <H1>DOM Poject: LIST📝</H1>
+    <div id="textContainer">
+        <input type="text" id="textInput" placeholder="Please enter an item.">
+    </div>
+    <button id="addItem">Add</button>
+    <div id="itemContainer">
+        <ul id="itemList">
+            <!-- ITEMS GO HERE -->
+        </ul>
+    </div>
+
+    <button id="clear">Clear All</button>
+    
+    
+    
+    
+    
+    
+    
+    <!-- JAVASCRIPT -->
+    <script>
+
+        //COOL EFFECTS
+        window.addEventListener("scroll", () => {
+            if(window.scrollY >= 20) {
+                document.body.style.backgroundColor = "cyan";
+                document.body.style.color = "red"
+            } else {
+                   document.body.style.backgroundColor = "";
+                document.body.style.color = ""
+            }
+        })
+        
+
+
+
+
+        let textInput = document.querySelector("#textInput")
+        let addItem = document.querySelector("#addItem")
+        let itemArray = []
+        let itemList = document.querySelector("#itemList")
+        // ADDING STUFF
+        
+        function add(){
+            addItem.addEventListener("click", () => {
+                
+                //ADDED ITEMS TO THE LIST
+                const addedItem = textInput.value.trim()
+
+
+
+                //WARNING IF THERE IS NOTHING
+                if(addedItem === ""){
+                    alert("Please Enter Something!")
+                    return // RETURNS NOTHING
+                }
+
+
+
+                const li = document.createElement("li")
+                li.innerHTML = `
+                    ${addedItem}
+                    <button class="deleteBtn">❌</button>
+                    `
+                    itemList.appendChild(li)
+                    // console.log(addedItem)  //for testing
+                    // console.log(itemArray)
+                    itemArray.push(addedItem) // PUSHES THE ITEM INTO THE ARRAY
+                    sessionStorage.setItem("Items", JSON.stringify(itemArray)) // .stringify MAKES IT INTO AN ARROW ALLOWING YOU TO USE
+                    // .push METHOD TO PUSH THINGS INTO ARRAY
+                    textInput.value = "" // CLEARS THE INPUT AFTER ADDING
+
+                    
+                })
+            }
+            add() // CALLS THE ADDING FUNCTION
+            
+            
+            let deleteBtn = document.querySelectorAll(".deleteBtn")
+            //DELETE BUTTON
+            
+            function deleteItem() {
+                itemList.addEventListener("click", (e) => { //// The (e) is the things inside the 
+                    confirm("Are you sure you want to delete this item?")
+                    if(e.target.classList.contains("deleteBtn")){ //classlist is the classese of the items
+                        e.target.parentElement.remove() //target is the thing that was clicked
+
+
+                        // DELETE THE ITEM FROM THE SESSION STORAGE TOO
+                        itemArray = []
+                        sessionStorage.setItem("Items", JSON.stringify(itemArray))
+                    }
+                })
+                
+            }
+            deleteItem()
+
+            
+
+            // Clear all button
+
+            let clear = document.querySelector("#clear")
+            function clearItems() {
+                clear.addEventListener("click", () => {
+                    confirm("Are you SURE you want to DELETE ALL ITEMS?")
+                    itemList.innerHTML = ""
+
+                    //CLEARS ALL ITEMS FROM THE SESSION STORAGE
+                    itemArray = []
+                    sessionStorage.setItem("Items", JSON.stringify(itemArray)) //clears the session storage
+                })
+            }
+            clearItems()
+
+            
+
+            //STORAGE
+
+            //GET ITEMS TO STORAGE
+
+
+            //Setting the item category in storage
+            const sessionData = sessionStorage.getItem("Items")
+            // GET ITEMS
+            function getItemsFromStorage() {
+
+            }
+
+            console.log(sessionData)
+
+
+            
+            
+
+
+
+
+            </script>
+</body>
+
+</html>
